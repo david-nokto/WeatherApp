@@ -1,0 +1,24 @@
+﻿@page "/sensordetails/{SensorId}"
+
+
+<h1 class="page-title text-center">Details for @Sensor.Name
+    <button class="btn btn-dark float-end" @onclick="() => GetNewData(Sensor.Id)">
+        <i class="fa-solid fa-temperature-arrow-down"></i>
+    </button>
+</h1>
+
+<div class="ms-5">
+    <h5><b>Type:</b> @Sensor.SensorType.Name</h5>
+    <h5><b>Location:</b> @Sensor.Location.City, @Sensor.Location.Country</h5>
+    <h5><b>Readings:</b> @Sensor.SensorData.Count</h5>
+</div>
+
+<div id=details-chart class="@(Sensor.SensorData.Count == 0 ? "d-none" : "") border border-2 border-dark p-3 m-5">
+    <LineChart  @ref="lineChart" TItem="ChartData" Options="@LineChartOptions"/>
+</div>
+
+@if (Sensor.SensorData.Count == 0 && Sensor.Id != Guid.Empty)
+{
+    <h4 class="ms-5 py-4">Note: more readings are required to display the chart.</h4>
+}
+

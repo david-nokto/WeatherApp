@@ -1,0 +1,15 @@
+﻿
+@if (IsOnline)
+{
+    <i class="fa-solid fa-hard-drive fa-2xl align-self-center online-icon"></i>
+}
+else
+{
+    <i class="fa-solid fa-hard-drive fa-2xl align-self-center offline-icon"></i>
+}
+
+
+@code {
+    [Parameter]
+    public bool IsOnline { get; set; }
+}
